@@ -5401,3 +5401,35 @@ textarea::placeholder {
   visibility: visible !important;
   opacity: 1 !important;
 }
+.job-fit-score-circle .score-circle-content {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.job-fit-score-circle .score-circle-content strong {
+  color: #000000 !important;
+  font-size: 32px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+.job-fit-score-circle .score-circle-content span {
+  color: #000000 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 9999 !important;
+}

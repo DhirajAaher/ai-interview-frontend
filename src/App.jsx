@@ -1532,7 +1532,7 @@ const renderDashboard = () => {
         }),
       });
 
-      const data = await response.json();
+      const data = await response.text();
 
       if (!response.ok) {
         throw new Error(data.message || "Invalid email or password.");
