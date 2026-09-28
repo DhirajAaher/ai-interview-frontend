@@ -1863,25 +1863,84 @@ const renderDashboard = () => {
   // =========================
   // NEXT QUESTION
   // =========================
+const nextQuestion = async () => {
+  setError("");
 
-  const nextQuestion = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(
-        (previousQuestion) => previousQuestion + 1
-      );
+  // Move to next question
+  if (currentQuestion < questions.length - 1) {
+    setCurrentQuestion(
+      (previousQuestion) => previousQuestion + 1
+    );
 
-      setAnswer("");
-      setEvaluation(null);
-      setError("");
-    } else {
-      setInterviewCompleted(true);
-      setInterviewStarted(false);
-      setAnswer("");
-      setEvaluation(null);
-      setError("");
+    setAnswer("");
+    setEvaluation(null);
+    setError("");
+
+    return;
+  }
+
+  // Final question → complete interview in backend
+  try {
+    setLoading(true);
+
+    if (!interviewId) {
+      throw new Error("Interview ID not found.");
     }
-  };
 
+    const response = await fetch(
+      `${API_BASE_URL}/interviews/${interviewId}/complete`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      let errorMessage = "Failed to complete interview.";
+
+      try {
+        const errorData = await response.json();
+
+        if (errorData.message) {
+          errorMessage = errorData.message;
+        }
+      } catch {
+        // Ignore JSON parsing error
+      }
+
+      throw new Error(errorMessage);
+    }
+
+    const completedInterview = await response.json();
+
+    console.log(
+      "Interview completed:",
+      completedInterview
+    );
+
+    // Show completion screen
+    setInterviewCompleted(true);
+    setInterviewStarted(false);
+    setAnswer("");
+    setEvaluation(null);
+    setError("");
+
+  } catch (err) {
+    console.error(
+      "Complete interview error:",
+      err
+    );
+
+    setError(
+      err.message ||
+        "Unable to complete interview."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
   // =========================
   // PREVIOUS QUESTION
   // =========================
@@ -3302,9 +3361,26 @@ const renderDashboard = () => {
                       "No interview tip was generated."}
                   </p>
                 </div>
+                {/* NEXT QUESTION / FINISH INTERVIEW */}
+              <div
+                className="interview-actions"
+                style={{
+                  marginTop: "30px",
+                }}
+              >
+                <button
+                  className="primary-btn"
+                  onClick={nextQuestion}
+                  disabled={loading}
+                >
+                  {currentQuestion < questions.length - 1
+                    ? "Next Question →"
+                    : "Finish Interview ✓"}
+                </button>
+              </div>
 
               </div>
-            </>
+            </> 
           )}
         </div>
       </main>
