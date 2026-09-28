@@ -341,7 +341,7 @@ const analyzeJobFit = async () => {
       }
     );
 
-    const data = await response.json();
+    const data = await response.text();
 
     if (!response.ok) {
       throw new Error(
@@ -1532,7 +1532,7 @@ const renderDashboard = () => {
         }),
       });
 
-      const data = await response.text();
+      const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.message || "Invalid email or password.");

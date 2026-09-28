@@ -5042,24 +5042,15 @@ textarea::placeholder {
 }
 
 .score-circle-content {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
+  position: relative;
+
+  z-index: 2;
+
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
-  justify-content: center;
-} 
-
-
-.job-fit-score-circle .score-circle-content strong {
-  font-size: 30px;
-  font-weight: 800;
-  color: #ffffff !important;
-  display: block;
-  visibility: visible !important;
-  opacity: 1 !important;
-  z-index: 10;
 }
 
 .score-circle-content strong {
@@ -5366,70 +5357,4 @@ textarea::placeholder {
 /* Make the main content balanced */
 .job-fit-page > * {
   box-sizing: border-box;
-}
-
-/* Fix Job Fit score percentage visibility */
-.job-fit-score-circle {
-  position: relative;
-}
-
-.score-circle-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.score-circle-content strong {
-  display: block;
-  color: #111827 !important;
-  font-size: 32px;
-  font-weight: 800;
-  line-height: 1;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
-.score-circle-content span {
-  display: block;
-  color: #6b7280 !important;
-  font-size: 14px;
-  margin-top: 6px;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-.job-fit-score-circle .score-circle-content {
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 9999 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.job-fit-score-circle .score-circle-content strong {
-  color: #000000 !important;
-  font-size: 32px !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 9999 !important;
-}
-
-.job-fit-score-circle .score-circle-content span {
-  color: #000000 !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 9999 !important;
 }
