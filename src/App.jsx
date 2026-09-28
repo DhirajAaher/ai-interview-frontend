@@ -341,7 +341,7 @@ const analyzeJobFit = async () => {
       }
     );
 
-    const data = await response.text();
+    const data = await response.json();
 
     if (!response.ok) {
       throw new Error(
